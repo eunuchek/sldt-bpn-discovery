@@ -60,9 +60,12 @@ GRANT ALL PRIVILEGES ON DATABASE bpndiscovery TO bpndiscovery;
    **Настройка ролей в Keycloak:**
    
    BPN Discovery требует следующие роли для разных операций:
-   - `view_bpn_discovery` - для поиска и просмотра BPN данных (GET, POST /search)
-   - `add_bpn_discovery` - для добавления BPN данных (POST, POST /batch)
-   - `delete_bpn_discovery` - для удаления BPN данных (DELETE)
+   - `view_bpn_discovery` - для просмотра и поиска BPN данных
+     - Эндпоинты: GET /**, POST /api/.../search
+   - `add_bpn_discovery` - для добавления BPN данных
+     - Эндпоинты: POST /api/.../bpnDiscovery, POST /api/.../batch
+   - `delete_bpn_discovery` - для удаления BPN данных
+     - Эндпоинты: DELETE /api/.../bpnDiscovery/**
    
    Шаги по настройке ролей:
    1. Откройте Keycloak Admin Console
@@ -249,9 +252,12 @@ GRANT ALL PRIVILEGES ON DATABASE bpndiscovery TO bpndiscovery;
    **Configuring Roles in Keycloak:**
    
    BPN Discovery requires the following roles for different operations:
-   - `view_bpn_discovery` - for searching and viewing BPN data (GET, POST /search)
-   - `add_bpn_discovery` - for adding BPN data (POST, POST /batch)
-   - `delete_bpn_discovery` - for deleting BPN data (DELETE)
+   - `view_bpn_discovery` - for viewing and searching BPN data
+     - Endpoints: GET /**, POST /api/.../search
+   - `add_bpn_discovery` - for adding BPN data
+     - Endpoints: POST /api/.../bpnDiscovery, POST /api/.../batch
+   - `delete_bpn_discovery` - for deleting BPN data
+     - Endpoints: DELETE /api/.../bpnDiscovery/**
    
    Steps to configure roles:
    1. Open Keycloak Admin Console

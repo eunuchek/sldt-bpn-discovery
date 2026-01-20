@@ -114,24 +114,21 @@ postgresql:
 | `applicationConfig.bpdm.security.auth-server-url` | `bpndiscovery.idp.issuerUri` | URL Keycloak сервера / Keycloak server URL |
 | `postgres.enabled: false` | `enablePostgres: false` | Отключение встроенной БД / Disable bundled DB |
 | `centralidp.enabled: false` | Не требуется / Not needed | BPN Discovery не имеет встроенного IDP / BPN Discovery has no bundled IDP |
-| Связи с orchestrator/pool/gate | **НЕ требуется** | BPN Discovery - независимый сервис / BPN Discovery is standalone |
+| Связи с orchestrator/pool/gate | **НЕ требуется** / **NOT required** | BPN Discovery - независимый сервис / BPN Discovery is standalone |
 
 ### Роли в Keycloak / Keycloak Roles:
 
 BPN Discovery требует следующие роли для пользователей/клиентов:
 
 **Required Roles:**
-- `view_bpn_discovery` - Для поиска и просмотра BPN данных / For searching and viewing BPN data
-  - Используется для: GET запросов, POST /search
-  - Used for: GET requests, POST /search
+- `view_bpn_discovery` - Для просмотра и поиска BPN данных / For viewing and searching BPN data
+  - Эндпоинты / Endpoints: GET /**, POST /api/.../search
   
 - `add_bpn_discovery` - Для добавления BPN данных / For adding BPN data
-  - Используется для: POST, POST /batch
-  - Used for: POST, POST /batch
+  - Эндпоинты / Endpoints: POST /api/.../bpnDiscovery, POST /api/.../batch
   
 - `delete_bpn_discovery` - Для удаления BPN данных / For deleting BPN data
-  - Используется для: DELETE запросов
-  - Used for: DELETE requests
+  - Эндпоинты / Endpoints: DELETE /api/.../bpnDiscovery/**
 
 **Настройка ролей в Keycloak:**
 1. Откройте Keycloak Admin Console
