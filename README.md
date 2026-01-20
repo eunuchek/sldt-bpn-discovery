@@ -41,4 +41,11 @@ Run `docker build -f backend/Dockerfile -t sldt-bpn-discovery .`
 In case you want to publish your image into a remote container registry, apply the tag accordingly and `docker push` the image.
 
 ## Install Instructions
-For detailed install instructions please refer to our [INSTALL.md](https://github.com/eclipse-tractusx/sldt-bpn-discovery/blob/main/INSTALL.md).
+For detailed install instructions please refer to our [INSTALL.md](https://github.com/eclipse-tractusx/sldt-bpn-discovery/blob/main/INSTALL.md)
+
+### Configuration with External Services
+If you need to configure BPN Discovery with external Keycloak and PostgreSQL (instead of bundled services), see our [Configuration Guide](docs/CONFIGURATION_GUIDE.md) which includes:
+- Instructions in Russian (Русский) and English
+- Example configuration files
+- Security best practices
+- Troubleshooting guides.

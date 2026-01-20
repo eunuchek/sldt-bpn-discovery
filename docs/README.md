@@ -23,4 +23,6 @@ Following documentation is available:
 
 | Documentation                                   | Purpose                                           |
 |-------------------------------------------------|---------------------------------------------------|
+| [BPDM Migration Guide](BPDM_MIGRATION_GUIDE.md) | Quick reference for users migrating from BPDM configuration (Russian and English) |
+| [Configuration Guide](CONFIGURATION_GUIDE.md)   | Guide for configuring BPN Discovery with external Keycloak and PostgreSQL (Russian and English) |
 | [Arc42](architecture/)                  | Architecture documentation for the bpn discovery. |
