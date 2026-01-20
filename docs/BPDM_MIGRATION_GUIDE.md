@@ -15,7 +15,7 @@ bpdm-gate:
       datasource:
         url: jdbc:postgresql://172.26.4.186:5432/bpdm
         username: bpdm
-        password: UvWoXg7t9O2vegWWciOA
+        password: your-secure-password-here
   applicationConfig:
     bpdm:
       security:
@@ -40,7 +40,7 @@ bpndiscovery:
     sqlInitPlatform: pg
     url: jdbc:postgresql://172.26.4.186:5432/bpndiscovery
     user: bpndiscovery
-    password: UvWoXg7t9O2vegWWciOA
+    password: your-secure-password-here
   
   # Настройки Keycloak (аналог applicationConfig.bpdm.security)
   idp:
@@ -53,7 +53,7 @@ bpndiscovery:
     baseUrl: "http://discovery-finder.tx-core.svc.cluster.local"
     registration:
       clientId: "Cl16-CX-BPNDiscovery"
-      clientSecret: "Lwrns3AzorK85Y5ZW9mYupTWLLYMNiaa"
+      clientSecret: "your-client-secret-here"
       authorizationGrantType: client_credentials
     provider:
       tokenUri: "https://centralidp.ippcp-dev.epa.si/auth/realms/CX-Central/protocol/openid-connect/token"
@@ -110,7 +110,7 @@ helm install bpndiscovery charts/bpndiscovery -n discovery \
   -f charts/bpndiscovery/values-external-keycloak-postgres.yaml \
   --set bpndiscovery.dataSource.url=jdbc:postgresql://172.26.4.186:5432/bpndiscovery \
   --set bpndiscovery.dataSource.user=bpndiscovery \
-  --set bpndiscovery.dataSource.password=UvWoXg7t9O2vegWWciOA \
+  --set bpndiscovery.dataSource.password=your-secure-password-here \
   --set bpndiscovery.idp.issuerUri=https://centralidp.ippcp-dev.epa.si/auth/realms/CX-Central \
   --set bpndiscovery.idp.publicClientId=Cl16-CX-BPNDiscovery
 ```

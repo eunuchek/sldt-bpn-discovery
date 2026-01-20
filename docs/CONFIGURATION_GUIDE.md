@@ -334,14 +334,14 @@ bpndiscovery:
     sqlInitPlatform: pg
     url: jdbc:postgresql://172.26.4.186:5432/bpndiscovery
     user: bpndiscovery
-    password: UvWoXg7t9O2vegWWciOA
+    password: your-secure-password-here
   
   # Discovery Finder integration
   discoveryfinderClient:
     baseUrl: "http://discovery-finder.tx-core.svc.cluster.local"
     registration:
       clientId: "Cl16-CX-BPNDiscovery"
-      clientSecret: "Lwrns3AzorK85Y5ZW9mYupTWLLYMNiaa"
+      clientSecret: "your-client-secret-here"
       authorizationGrantType: client_credentials
     provider:
       tokenUri: "https://centralidp.ippcp-dev.epa.si/auth/realms/CX-Central/protocol/openid-connect/token"
