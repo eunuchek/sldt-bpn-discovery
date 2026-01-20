@@ -23,4 +23,5 @@ Following documentation is available:
 
 | Documentation                                   | Purpose                                           |
 |-------------------------------------------------|---------------------------------------------------|
+| [Configuration Guide](CONFIGURATION_GUIDE.md)   | Guide for configuring BPN Discovery with external Keycloak and PostgreSQL (Russian and English) |
 | [Arc42](architecture/)                  | Architecture documentation for the bpn discovery. |

@@ -29,6 +29,29 @@ by running `echo "minikube $(minikube ip)" | sudo tee -a /etc/hosts`.
 For automated certificate generation, use and configure [cert-manager](https://cert-manager.io/). By default, authentication is deactivated, please
 adjust `bpndiscovery.authentication` if needed.
 
+## Configuration with External Keycloak and PostgreSQL
+
+If you want to use an external Keycloak instance for authentication and an external PostgreSQL database instead of the bundled ones, please refer to our comprehensive [Configuration Guide](docs/CONFIGURATION_GUIDE.md).
+
+The guide includes:
+- Step-by-step instructions in both Russian and English
+- Example configuration files
+- Security best practices
+- Troubleshooting tips
+
+Quick example for external setup:
+
+```bash
+# Use the provided example values file
+helm install bpndiscovery charts/bpndiscovery \
+  -n discovery \
+  -f charts/bpndiscovery/values-external-keycloak-postgres.yaml \
+  --set bpndiscovery.dataSource.url=jdbc:postgresql://your-db-host:5432/bpndiscovery \
+  --set bpndiscovery.dataSource.user=your-db-user \
+  --set bpndiscovery.dataSource.password=your-db-password \
+  --set bpndiscovery.idp.issuerUri=https://your-keycloak/auth/realms/your-realm
+```
+
 ## Parameters
 
 The Helm Chart can be configured using the following parameters. For a full overview, please see the [values.yaml](./charts/bpndiscovery/values.yaml).

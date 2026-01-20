@@ -27,6 +27,21 @@ kubectl create namespace discovery
 helm install bpndiscovery -n discovery charts/bpndiscovery
 ```
 
+### Installation with External Keycloak and PostgreSQL
+
+For production deployments with external Keycloak and PostgreSQL:
+
+```bash
+helm dep up charts/bpndiscovery
+kubectl create namespace discovery
+helm install bpndiscovery -n discovery charts/bpndiscovery \
+  -f charts/bpndiscovery/values-external-keycloak-postgres.yaml \
+  --set bpndiscovery.dataSource.password=your-secure-password \
+  --set bpndiscovery.discoveryfinderClient.registration.clientSecret=your-client-secret
+```
+
+See [values-external-keycloak-postgres.yaml](values-external-keycloak-postgres.yaml) for a complete example configuration and [CONFIGURATION_GUIDE.md](../../docs/CONFIGURATION_GUIDE.md) for detailed instructions.
+
 ## Values
 ### BPN Discovery parameters
 | Key                                                                                   | Type    | Default                             | Description                                                                                                                                                                                                                              |
