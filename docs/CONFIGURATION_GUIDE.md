@@ -2,6 +2,18 @@
 
 This guide explains how to configure BPN Discovery with external Keycloak authentication and PostgreSQL database.
 
+## Important Note / Важное примечание
+
+**BPN Discovery is a standalone service** and does NOT require connections to BPDM services (orchestrator, pool, gate). Unlike BPDM services which interconnect with each other, BPN Discovery operates independently and only requires:
+- Keycloak for authentication
+- PostgreSQL for data storage
+- (Optional) Discovery Finder for service registration
+
+**BPN Discovery - это самостоятельный сервис**, который НЕ требует подключения к сервисам BPDM (orchestrator, pool, gate). В отличие от сервисов BPDM, которые взаимодействуют друг с другом, BPN Discovery работает независимо и требует только:
+- Keycloak для аутентификации
+- PostgreSQL для хранения данных
+- (Опционально) Discovery Finder для регистрации сервиса
+
 ## Конфигурация с внешним Keycloak и PostgreSQL / Configuration with External Keycloak and PostgreSQL
 
 ### Русский / Russian
@@ -44,6 +56,24 @@ GRANT ALL PRIVILEGES ON DATABASE bpndiscovery TO bpndiscovery;
    - Включите Client authentication
    - Установите Valid Redirect URIs
    - Скопируйте Client Secret
+   
+   **Настройка ролей в Keycloak:**
+   
+   BPN Discovery требует следующие роли для разных операций:
+   - `view_bpn_discovery` - для поиска и просмотра BPN данных (GET, POST /search)
+   - `add_bpn_discovery` - для добавления BPN данных (POST, POST /batch)
+   - `delete_bpn_discovery` - для удаления BPN данных (DELETE)
+   
+   Шаги по настройке ролей:
+   1. Откройте Keycloak Admin Console
+   2. Перейдите в ваш realm (например: CX-Central)
+   3. Перейдите в "Clients" → выберите ваш клиент (например: `bpndiscovery-client`)
+   4. Перейдите на вкладку "Roles"
+   5. Создайте роли:
+      - `view_bpn_discovery`
+      - `add_bpn_discovery`
+      - `delete_bpn_discovery`
+   6. Назначьте эти роли пользователям или сервисным аккаунтам, которые будут использовать BPN Discovery
 
 3. **Создайте файл конфигурации values.yaml:**
 
@@ -215,6 +245,24 @@ GRANT ALL PRIVILEGES ON DATABASE bpndiscovery TO bpndiscovery;
    - Enable Client authentication
    - Set Valid Redirect URIs
    - Copy Client Secret
+   
+   **Configuring Roles in Keycloak:**
+   
+   BPN Discovery requires the following roles for different operations:
+   - `view_bpn_discovery` - for searching and viewing BPN data (GET, POST /search)
+   - `add_bpn_discovery` - for adding BPN data (POST, POST /batch)
+   - `delete_bpn_discovery` - for deleting BPN data (DELETE)
+   
+   Steps to configure roles:
+   1. Open Keycloak Admin Console
+   2. Navigate to your realm (e.g., CX-Central)
+   3. Go to "Clients" → select your client (e.g., `bpndiscovery-client`)
+   4. Go to "Roles" tab
+   5. Create the following roles:
+      - `view_bpn_discovery`
+      - `add_bpn_discovery`
+      - `delete_bpn_discovery`
+   6. Assign these roles to users or service accounts that will use BPN Discovery
 
 3. **Create values.yaml configuration file:**
 

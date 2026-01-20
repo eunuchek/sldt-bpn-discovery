@@ -1,5 +1,31 @@
 # Quick Reference: BPN Discovery Configuration (Similar to BPDM)
 
+## Important Note / Важное примечание
+
+**BPN Discovery ≠ BPDM Services**
+
+BPN Discovery is a **standalone service** and does NOT connect to BPDM services (orchestrator, pool, gate). 
+
+**BPN Discovery - это самостоятельный сервис**, который НЕ подключается к сервисам BPDM (orchestrator, pool, gate).
+
+### Architecture Difference / Архитектурная разница:
+
+**BPDM Services (взаимосвязанные):**
+```
+bpdm-gate ← → bpdm-orchestrator ← → bpdm-pool
+```
+
+**BPN Discovery (независимый):**
+```
+BPN Discovery → Keycloak (authentication)
+BPN Discovery → PostgreSQL (data storage)
+BPN Discovery → Discovery Finder (optional registration)
+```
+
+BPN Discovery does not require connections to BPDM orchestrator, pool, or gate.
+
+BPN Discovery не требует подключений к BPDM orchestrator, pool или gate.
+
 ## Сравнение конфигурации BPDM и BPN Discovery / BPDM vs BPN Discovery Configuration Comparison
 
 ### Русский
@@ -88,6 +114,38 @@ postgresql:
 | `applicationConfig.bpdm.security.auth-server-url` | `bpndiscovery.idp.issuerUri` | URL Keycloak сервера / Keycloak server URL |
 | `postgres.enabled: false` | `enablePostgres: false` | Отключение встроенной БД / Disable bundled DB |
 | `centralidp.enabled: false` | Не требуется / Not needed | BPN Discovery не имеет встроенного IDP / BPN Discovery has no bundled IDP |
+| Связи с orchestrator/pool/gate | **НЕ требуется** | BPN Discovery - независимый сервис / BPN Discovery is standalone |
+
+### Роли в Keycloak / Keycloak Roles:
+
+BPN Discovery требует следующие роли для пользователей/клиентов:
+
+**Required Roles:**
+- `view_bpn_discovery` - Для поиска и просмотра BPN данных / For searching and viewing BPN data
+  - Используется для: GET запросов, POST /search
+  - Used for: GET requests, POST /search
+  
+- `add_bpn_discovery` - Для добавления BPN данных / For adding BPN data
+  - Используется для: POST, POST /batch
+  - Used for: POST, POST /batch
+  
+- `delete_bpn_discovery` - Для удаления BPN данных / For deleting BPN data
+  - Используется для: DELETE запросов
+  - Used for: DELETE requests
+
+**Настройка ролей в Keycloak:**
+1. Откройте Keycloak Admin Console
+2. Перейдите в realm (например: CX-Central)
+3. Clients → выберите клиент → Roles
+4. Создайте три роли выше
+5. Назначьте роли пользователям или сервисным аккаунтам
+
+**Configuring Roles in Keycloak:**
+1. Open Keycloak Admin Console
+2. Navigate to your realm (e.g., CX-Central)
+3. Clients → select your client → Roles
+4. Create the three roles above
+5. Assign roles to users or service accounts
 
 ### English
 
